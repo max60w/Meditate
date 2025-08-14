@@ -1,18 +1,18 @@
 module HrvAlgorithms {
 	class HrvSuccessive {
-		function initialize() {		
+		function initialize() {
 			me.mPreviousBeatToBeatInterval = null;
 			me.mCurrentBeatToBeatInterval = null;
 		}
-			
+
 		private var mPreviousBeatToBeatInterval;
 		private var mCurrentBeatToBeatInterval;
-		
+
 		function addBeatToBeatInterval(beatToBeatInterval) {
 			me.mPreviousBeatToBeatInterval = me.mCurrentBeatToBeatInterval;
-			me.mCurrentBeatToBeatInterval = beatToBeatInterval;	
+			me.mCurrentBeatToBeatInterval = beatToBeatInterval;
 		}
-		
+
 		function calculate() {
 			if (me.mPreviousBeatToBeatInterval == null || me.mCurrentBeatToBeatInterval == null) {
 				return null;
