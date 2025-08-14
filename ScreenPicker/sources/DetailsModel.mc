@@ -14,22 +14,22 @@ module ScreenPicker {
 			me.latestAddedIndex = -1;
 			me.backgroundColor = Gfx.COLOR_WHITE;
 		}
-		
+
 		private const MaxHighlightsCount = 50;
 		private var highlights;
 		private var latestAddedIndex;
-		
-		var backgroundColor;	
+
+		var backgroundColor;
 		var startPosX;
 		var yOffset;
-						
+
 		function addHighlight(color, progressPercentage) {
 			if (latestAddedIndex + 1 < MaxHighlightsCount) {
 				me.latestAddedIndex++;
 				me.highlights[me.latestAddedIndex] = new LineHighlight(color, progressPercentage);
 			}
 		}
-			
+
 		function getHighlights() {
 			if (me.highlights.size() == 0) {
 				return [];
@@ -39,7 +39,7 @@ module ScreenPicker {
 			}
 		}
 	}
-	
+
 	class LineHighlight {
 		function initialize(color, progressPercentage) {
 			me.color = color;
@@ -48,7 +48,7 @@ module ScreenPicker {
 		var color;
 		var progressPercentage;
 	}
-	
+
 	class TextValue {
 		function initialize() {
 			me.text = "";
@@ -56,13 +56,13 @@ module ScreenPicker {
 			me.color = Gfx.COLOR_WHITE;
 			me.xPos = 0;
 		}
-	
+
 		var text;
 		var font;
 		var color;
 		var xPos;
 	}
-	
+
 	class Icon {
 		function initialize(icon) {
 			var iconDrawableParams = {};
@@ -90,65 +90,65 @@ module ScreenPicker {
 			if (icon[:yPos] != null) {
 				iconDrawableParams[:locY] = icon[:yPos];
 			}
-			iconDrawableParams[:justification] = Gfx.TEXT_JUSTIFY_CENTER;		
+			iconDrawableParams[:justification] = Gfx.TEXT_JUSTIFY_CENTER;
 			me.mIconDrawable = new Ui.Text(iconDrawableParams);
-		}	
-		
+		}
+
 		private var mIconDrawable;
-	
+
 		function setXPos(xPos) {
 			me.mIconDrawable.locX = xPos;
 		}
-		
+
 		function setYPos(yPos) {
 			me.mIconDrawable.locY = yPos;
 		}
-		
+
 		function setColor(color) {
 			me.mIconDrawable.setColor(color);
 		}
-		
+
 		function draw(dc) {
 			me.mIconDrawable.draw(dc);
-		}	
+		}
 	}
-		
+
 	class DetailsLine extends DetailsLineBase {
 		function initialize(lineNumber) {
-			DetailsLineBase.initialize(lineNumber);	
-			me.icon = null;		
+			DetailsLineBase.initialize(lineNumber);
+			me.icon = null;
 			me.value = new TextValue();
 		}
-	
-		var icon;	
-		var value;	
+
+		var icon;
+		var value;
 	}
-	
+
 	class DetailsLineBase {
-		function initialize(lineNumber) {	
+		function initialize(lineNumber) {
 			me.mLineNumber = lineNumber;
 			me.yLineOffset = 0;
 			me.lineHeight = App.getApp().getProperty("detailsModelLineHeight");
 			me.iconHeight = App.getApp().getProperty("detailsModelIconHeight");
 		}
-	
+
 		var yLineOffset;
-		
+
 		private var mLineNumber;
-			
+
 		function getYPos() {
 			return InitialPosY + me.mLineNumber * me.lineHeight + me.yLineOffset;
 		}
-		
+
 		function getIconYPos() {
 			return InitialPosY + me.mLineNumber * me.iconHeight + me.yLineOffset;
 		}
-				
+
 		private var lineHeight;
 		private var iconHeight;
 		private const InitialPosY = 30;
 	}
-	
+
 	class DetailsModel{
 		function initialize() {
 			me.title = "";
@@ -164,9 +164,9 @@ module ScreenPicker {
 				5 => new DetailsLine(5)
 			};
 		}
-		
+
 		const LinesCount = 5;
-		
+
 		function setAllIconsXPos(xPos) {
 			for (var i = 1; i <= LinesCount; i++) {
 				if (me.detailLines[i] instanceof DetailsLine && detailLines[i].icon instanceof Icon) {
@@ -174,7 +174,7 @@ module ScreenPicker {
 				}
 			}
 		}
-				
+
 		function setAllValuesXPos(xPos) {
 			for (var i = 1; i <= LinesCount; i++) {
 				if (me.detailLines[i] instanceof DetailsLine && me.detailLines[i].value instanceof TextValue) {
@@ -182,7 +182,7 @@ module ScreenPicker {
 				}
 			}
 		}
-				
+
 		function setAllLinesYOffset(yOffset) {
 			for (var i = 1; i <= LinesCount; i++) {
 				if (me.detailLines[i]) {
@@ -190,7 +190,7 @@ module ScreenPicker {
 				}
 			}
 		}
-			
+
 		var title;
 		var titleFont;
 		var titleColor;

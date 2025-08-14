@@ -6,9 +6,9 @@ class GlobalSettingsMenuDelegate extends Ui.MenuInputDelegate {
 		MenuInputDelegate.initialize();
 		mOnGlobalSettingsChanged = onGlobalSettingsChanged;
 	}
-	
+
 	private var mOnGlobalSettingsChanged;
-	
+
 	function onMenuItem(item) {
 		if (item ==:hrvTracking) {
 			var hrvTrackingDelegate = new MenuOptionsDelegate(method(:onHrvTrackingPicked));
@@ -27,7 +27,7 @@ class GlobalSettingsMenuDelegate extends Ui.MenuInputDelegate {
 			Ui.pushView(new Rez.Menus.multiSessionOptionsMenu(), multiSessionDelegate, Ui.SLIDE_LEFT);
 		}
 	}
-	
+
 	function onConfirmSaveActivityPicked(item) {
 		if (item == :ask) {
 			GlobalSettings.saveConfirmSaveActivity(ConfirmSaveActivity.Ask);
@@ -40,7 +40,7 @@ class GlobalSettingsMenuDelegate extends Ui.MenuInputDelegate {
 		}
 		mOnGlobalSettingsChanged.invoke();
 	}
-	
+
 	function onMultiSessionPicked(item) {
 		if (item == :yes) {
 			GlobalSettings.saveMultiSession(MultiSession.Yes);
@@ -50,7 +50,7 @@ class GlobalSettingsMenuDelegate extends Ui.MenuInputDelegate {
 		}
 		mOnGlobalSettingsChanged.invoke();
 	}
-	
+
 	function onNewActivityTypePicked(item) {
 		if (item == :meditating) {
 			GlobalSettings.saveActivityType(ActivityType.Meditating);
@@ -60,7 +60,7 @@ class GlobalSettingsMenuDelegate extends Ui.MenuInputDelegate {
 		}
 		mOnGlobalSettingsChanged.invoke();
 	}
-			
+
 	function onHrvTrackingPicked(item) {
 		if (item == :on) {
 			GlobalSettings.saveHrvTracking(HrvTracking.On);

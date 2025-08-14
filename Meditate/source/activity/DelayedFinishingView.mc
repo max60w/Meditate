@@ -8,24 +8,24 @@ class DelayedFinishingView extends Ui.View {
 		View.initialize();
 		me.mOnShow = onShow;
 	}
-	
+
 	function onViewDrawn() {
 		me.mOnShow.invoke();
 	}
-	
-	function onLayout(dc) {    
+
+	function onLayout(dc) {
         setLayout(Rez.Layouts.delayedFinishing(dc));
-    }     
-	
-	function onShow() {	
+    }
+
+	function onShow() {
 		var viewDrawnTimer = new Timer.Timer();
-		viewDrawnTimer.start(method(:onViewDrawn), 1000, false);		
+		viewDrawnTimer.start(method(:onViewDrawn), 1000, false);
 	}
-		
-	function onUpdate(dc) {     
+
+	function onUpdate(dc) {
 		View.onUpdate(dc);
 	}
-	
+
 	function onHide() {
 	}
 }

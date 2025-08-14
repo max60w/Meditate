@@ -5,16 +5,16 @@ using Toybox.Lang;
 class DurationPickerView extends Ui.View {
 	private var mModel;
 	private var mDigitsLayoutBuilder;
-	
+
     function initialize(model, digitsLayoutBuilder) {
-        View.initialize();     
+        View.initialize();
         me.mModel = model;
         me.mDigitsLayoutBuilder = digitsLayoutBuilder;
     }
-        
+
     var mDigitsLayout;
     var mDigitsOutput;
-    
+
     // Load your resources here
     function onLayout(dc) {
     	me.mDigitsLayout = me.mDigitsLayoutBuilder.build(dc);
@@ -30,25 +30,25 @@ class DurationPickerView extends Ui.View {
     	me.mModel.reset();
     	me.mDigitsOutput.setInitialHintLayout();
     }
-	
+
 	function updateEnabledDigitsStatus() {
 		var nextPickerPos = me.mModel.getPickerPos()+1;
 		me.mDigitsLayout.setEnabledDigits(nextPickerPos);
-	}	
-		
+	}
+
     // Update the view
-    function onUpdate(dc) {     
+    function onUpdate(dc) {
     	me.updateEnabledDigitsStatus();
-    	if (me.mModel.isInitialHintPos()) {    		
+    	if (me.mModel.isInitialHintPos()) {
     		me.mDigitsOutput.setInitialHintLayout();
     	}
     	else {
-   	    	me.mDigitsOutput.setSelectedDigit(me.mModel.getPickerPos(), me.mModel.getDigits());	
+   	    	me.mDigitsOutput.setSelectedDigit(me.mModel.getPickerPos(), me.mModel.getDigits());
    	    }
-				
-    	View.onUpdate(dc);	
-		if (me.mModel.isFinishPos()) {		
-			var xPos = 	dc.getWidth() / 2;	
+
+    	View.onUpdate(dc);
+		if (me.mModel.isFinishPos()) {
+			var xPos = 	dc.getWidth() / 2;
 			var yPos = dc.getHeight() / 2 + dc.getFontHeight(Gfx.FONT_XTINY);
      		var tickIcon = new ScreenPicker.Icon({
      			:font => StatusIconFonts.fontAwesomeFreeSolid,
@@ -58,7 +58,7 @@ class DurationPickerView extends Ui.View {
      			:color => Gfx.COLOR_GREEN
      		});
      		tickIcon.draw(dc);
-		}				
+		}
     }
 
     // Called when this View is removed from the screen. Save the

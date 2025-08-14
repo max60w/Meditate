@@ -8,13 +8,13 @@ class IntervalTypeMenuDelegate extends Ui.MenuInputDelegate {
 		MenuInputDelegate.initialize();
 		me.mOnTypeChanged = onTypeChanged;
 	}
-	
+
 	function onMenuItem(item) {
         if (item == :oneOff) {
-			me.mOnTypeChanged.invoke(IntervalAlertType.OneOff);		
+			me.mOnTypeChanged.invoke(IntervalAlertType.OneOff);
         }
         else if (item == :repeat) {
         	me.mOnTypeChanged.invoke(IntervalAlertType.Repeat);
         }
-    }	
+    }
 }

@@ -2,16 +2,16 @@ using Toybox.WatchUi as Ui;
 
 class IntervalVibePatternMenuDelegate extends Ui.MenuInputDelegate {
 	private var mOnVibePatternPicked;
-	
+
     function initialize(onVibePatternPicked) {
         MenuInputDelegate.initialize();
         me.mOnVibePatternPicked = onVibePatternPicked;
     }
-		
+
     function onMenuItem(item) {
     	if (item == :mediumContinuous) {
         	me.mOnVibePatternPicked.invoke(VibePattern.MediumContinuous);
-        }    
+        }
         else if (item == :mediumPulsating) {
         	me.mOnVibePatternPicked.invoke(VibePattern.MediumPulsating);
         }
@@ -20,7 +20,7 @@ class IntervalVibePatternMenuDelegate extends Ui.MenuInputDelegate {
         }
     	else if (item == :shortContinuous) {
         	me.mOnVibePatternPicked.invoke(VibePattern.ShortContinuous);
-        }    
+        }
         else if (item == :shortPulsating) {
         	me.mOnVibePatternPicked.invoke(VibePattern.ShortPulsating);
         }
@@ -35,6 +35,6 @@ class IntervalVibePatternMenuDelegate extends Ui.MenuInputDelegate {
         }
         else if (item == :blip) {
         	me.mOnVibePatternPicked.invoke(VibePattern.Blip);
-        }              
+        }
     }
 }

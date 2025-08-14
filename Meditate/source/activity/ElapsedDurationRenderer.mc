@@ -7,7 +7,7 @@ class ElapsedDuationRenderer {
 		me.mRadius = radius;
 		me.mWidth = width;
 	}
-	
+
 	private var mColor;
 	private var mRadius;
 	private var mWidth;
@@ -23,7 +23,7 @@ class ElapsedDuationRenderer {
     		if (progressPercentage == 0) {
     			progressPercentage = 0.05;
     		}
-		}		
+		}
     	me.drawDuration(dc, progressPercentage);
     }
     private function drawDuration(dc, progressPercentage) {
@@ -32,7 +32,7 @@ class ElapsedDuationRenderer {
         var endDegree = StartDegree + percentageToArcDegree(progressPercentage);
         dc.drawArc(dc.getWidth() / 2, dc.getHeight() / 2,  me.mRadius , Gfx.ARC_CLOCKWISE, me.StartDegree, endDegree);
     }
-    
+
     private static function percentageToArcDegree(percentage) {
     	return - percentage * 3.6;
     }

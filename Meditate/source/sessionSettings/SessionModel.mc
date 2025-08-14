@@ -5,7 +5,7 @@ module VibePattern {
 	enum {
 		LongPulsating = 1,
 		LongContinuous = 2,
-		LongAscending = 3,		
+		LongAscending = 3,
 		ShortPulsating = 4,
 		ShortContinuous = 5,
 		ShortAscending = 6,
@@ -26,35 +26,35 @@ module ActivityType {
 }
 
 class SessionModel {
-	function initialize() {	
+	function initialize() {
 	}
-		
-	function fromDictionary(loadedSessionDictionary) {	
+
+	function fromDictionary(loadedSessionDictionary) {
 		me.time = loadedSessionDictionary["time"];
 		me.color = loadedSessionDictionary["color"];
 		me.vibePattern = loadedSessionDictionary["vibePattern"];
-		me.activityType = loadedSessionDictionary["activityType"];		
+		me.activityType = loadedSessionDictionary["activityType"];
 		me.ensureActivityTypeExists();
 		me.hrvTracking = loadedSessionDictionary["hrvTracking"];
-		me.ensureHrvTrackingExists();	
-		var serializedAlerts = loadedSessionDictionary["intervalAlerts"];		
+		me.ensureHrvTrackingExists();
+		var serializedAlerts = loadedSessionDictionary["intervalAlerts"];
 		me.intervalAlerts = new IntervalAlerts();
 		me.intervalAlerts.fromDictionary(serializedAlerts);
 	}
-	
+
 	private function ensureHrvTrackingExists() {
 		if (me.hrvTracking == null) {
 			me.hrvTracking = GlobalSettings.loadHrvTracking();
-		}	
+		}
 	}
-	
+
 	private function ensureActivityTypeExists() {
 		if (me.activityType == null) {
 			me.activityType = GlobalSettings.loadActivityType();
-		}	
+		}
 	}
-	
-	function toDictionary() {	
+
+	function toDictionary() {
 		var serializedAlerts = me.intervalAlerts.toDictionary();
 		me.ensureActivityTypeExists();
 		return {
@@ -66,17 +66,17 @@ class SessionModel {
 			"hrvTracking" => me.hrvTracking
 		};
 	}
-		
+
 	function reset() {
 		me.time = 600;
 		me.color = Gfx.COLOR_BLUE;
-		me.vibePattern = VibePattern.LongContinuous;		
+		me.vibePattern = VibePattern.LongContinuous;
 		me.activityType = GlobalSettings.loadActivityType();
 		me.hrvTracking = GlobalSettings.loadHrvTracking();
 		me.intervalAlerts = new IntervalAlerts();
 		me.intervalAlerts.reset();
 	}
-	
+
 	function copyNonNullFieldsFromSession(otherSession) {
     	if (otherSession.time != null) {
     		me.time = otherSession.time;
@@ -97,7 +97,7 @@ class SessionModel {
     		me.hrvTracking = otherSession.hrvTracking;
     	}
 	}
-		
+
 	var time;
 	var color;
 	var vibePattern;
